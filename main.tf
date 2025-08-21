@@ -13,3 +13,13 @@ resource "aws_instance" "example" {
   instance_type = "t3.small"  
 }
 
+resource "aws_instance" "example" {
+  ami           = "ami-0b016c703b95ecbe4"
+  instance_type = "t3.small"
+
+  # Asignar un nombre visible en AWS
+  tags = {
+    Name = "cyberpunk"
+  }
+}
+
