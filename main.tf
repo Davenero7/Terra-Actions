@@ -10,5 +10,5 @@ resource "aws_s3_bucket" "demo_bucket" {
 
 resource "aws_instance" "example" {
   ami = "ami-0ad4621ea15a605ca"
-  instance_type = "t2.micro"  
+  instance_type = "t3.medium"  
 }
