@@ -1,12 +1,12 @@
 # Nueva forma de manejar ACL
-resource "aws_s3_bucket" "demo_bucket" {
-  bucket = "mi-bucket-demo-20773"
+# resource "aws_s3_bucket" "demo_bucket" {
+#   bucket = "mi-bucket-demo-20773"
 
-  tags = {
-    Name        = "mi-bucket-demo-20773"
-    Environment = "dev"
-  }
-}
+#   tags = {
+#     Name        = "mi-bucket-demo-20773"
+#     Environment = "dev"
+#   }
+# }
 
 resource "aws_instance" "example" {
   ami = "ami-0b016c703b95ecbe4"
