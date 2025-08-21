@@ -9,6 +9,6 @@ resource "aws_s3_bucket" "demo_bucket" {
 }
 
 resource "aws_instance" "example" {
-  ami = "ami-0ad4621ea15a605ca"
+  ami = "ami-0b016c703b95ecbe4"
   instance_type = "t3.small"  
 }
