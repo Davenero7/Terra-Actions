@@ -26,3 +26,18 @@ resource "aws_instance" "example" {
 #   }
 # }
 
+provider "aws" {
+  region = "us-west-2"
+}
+
+module "ec2_cyberpunk" {
+  source        = "./modules/ec2"
+  ami           = "ami-0b016c703b95ecbe4"
+  instance_type = "t3.small"
+  name          = "cyberpunk"
+}
+
+output "cyberpunk_public_ip" {
+  value = module.ec2_cyberpunk.public_ip
+}
+
