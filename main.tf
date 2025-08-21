@@ -1,9 +1,9 @@
 # Nueva forma de manejar ACL
 resource "aws_s3_bucket" "demo_bucket" {
-  bucket = "mi-bucket-demo-terraform-2026-daveee"
+  bucket = "mi-bucket-demo-terraform-2027-dave"
 
   tags = {
-    Name        = "mi-bucket-demo-terraform-2026-daveee"
+    Name        = "mi-bucket-demo-terraform-2027-dave"
     Environment = "dev"
   }
 }
