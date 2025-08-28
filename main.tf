@@ -1,23 +1,9 @@
-terraform {
-  required_version = ">= 1.5.0"
-
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
-
-  backend "s3" {
-    bucket         = "mi-terraform-state-lc"  # <- tu bucket existente
-    key            = "terraform.tfstate"
-    region         = "us-east-2"
-    dynamodb_table = "terraform-locks"
-    encrypt        = true
-  }
+module "vpc" {
+  source = "./vpc"
 }
 
-# Provider va fuera del bloque terraform
-provider "aws" {
-  region = "us-east-2"
+module "ec2" {
+  source    = "./ec2"
+  vpc_id    = module.vpc.vpc_id
+  public_subnet_id = module.vpc.public_subnet_id
 }
