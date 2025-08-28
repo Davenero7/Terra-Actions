@@ -17,6 +17,6 @@ terraform {
 #   }
 # }
 
-provider "aws" {
-  region = "us-east-2"  # Ohio
-}
+# provider "aws" {
+#   region = "us-east-2"  # Ohio
+# }
