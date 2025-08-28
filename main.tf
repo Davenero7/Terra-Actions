@@ -8,14 +8,14 @@ terraform {
     }
   }
   
-  backend "s3" {
-    bucket         = "mi-terraform-state"
-    key            = "terraform.tfstate"
-    region         = "us-east-2" # Ohio
-    dynamodb_table = "terraform-locks"
-    encrypt        = true
-  }
-}
+#   backend "s3" {
+#     bucket         = "mi-terraform-state"
+#     key            = "terraform.tfstate"
+#     region         = "us-east-2" # Ohio
+#     dynamodb_table = "terraform-locks"
+#     encrypt        = true
+#   }
+# }
 
 provider "aws" {
   region = "us-east-2"  # Ohio
