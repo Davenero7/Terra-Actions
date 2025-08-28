@@ -55,6 +55,19 @@ resource "aws_vpc" "this" {
   }
 }
 
+#nueva infra
+resource "aws_vpc" "main" {
+  cidr_block = "10.0.0.0/16"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+
+  tags = {
+    Name = "my-vpc"
+  }
+}
+
 # Crear Subnets Públicas
 resource "aws_subnet" "public" {
   for_each          = toset(var.public_subnets)
