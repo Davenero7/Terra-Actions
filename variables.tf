@@ -35,3 +35,26 @@ variable "availability_zones" {
   description = "List of AZs where subnets will be created"
   type        = list(string)
 }
+
+
+
+
+##### RDS.  ######
+
+
+
+variable "vpc_id" {
+  type        = string
+  description = "ID de la VPC existente"
+}
+
+variable "db_username" {
+  type        = string
+  description = "Usuario de la base de datos"
+}
+
+variable "db_password" {
+  type        = string
+  description = "Password de la base de datos"
+  sensitive   = true
+}
