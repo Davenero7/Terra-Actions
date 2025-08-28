@@ -102,69 +102,69 @@ resource "aws_route_table" "public" {
   }
 }
 
-# Asociar Subnets Públicas a la Route Table
-resource "aws_route_table_association" "public_assoc" {
-  for_each       = aws_subnet.public
-  subnet_id      = each.value.id
-  route_table_id = aws_route_table.public.id
-}
+# # Asociar Subnets Públicas a la Route Table
+# resource "aws_route_table_association" "public_assoc" {
+#   for_each       = aws_subnet.public
+#   subnet_id      = each.value.id
+#   route_table_id = aws_route_table.public.id
+# }
 
 
-# Data para usar la VPC ya creada
-data "aws_vpc" "selected" {
-  id = var.vpc_id
-}
+# # Data para usar la VPC ya creada
+# data "aws_vpc" "selected" {
+#   id = var.vpc_id
+# }
 
-# Data para usar subnets ya creadas en esa VPC
-data "aws_subnets" "selected" {
-  filter {
-    name   = "vpc-id"
-    values = [var.vpc_id]
-  }
-}
+# # Data para usar subnets ya creadas en esa VPC
+# data "aws_subnets" "selected" {
+#   filter {
+#     name   = "vpc-id"
+#     values = [var.vpc_id]
+#   }
+# }
 
-# Security group para RDS
-resource "aws_security_group" "rds_sg" {
-  name        = "rds-security-group"
-  description = "Permitir acceso MySQL"
-  vpc_id      = var.vpc_id
+# # Security group para RDS
+# resource "aws_security_group" "rds_sg" {
+#   name        = "rds-security-group"
+#   description = "Permitir acceso MySQL"
+#   vpc_id      = var.vpc_id
 
-  ingress {
-    description = "MySQL"
-    from_port   = 3306
-    to_port     = 3306
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # ⚠️ Abierto a todos (solo para pruebas)
-  }
+#   ingress {
+#     description = "MySQL"
+#     from_port   = 3306
+#     to_port     = 3306
+#     protocol    = "tcp"
+#     cidr_blocks = ["0.0.0.0/0"] # ⚠️ Abierto a todos (solo para pruebas)
+#   }
 
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
+#   egress {
+#     from_port   = 0
+#     to_port     = 0
+#     protocol    = "-1"
+#     cidr_blocks = ["0.0.0.0/0"]
+#   }
+# }
 
-# Subnet group para RDS
-resource "aws_db_subnet_group" "rds_subnets" {
-  name       = "rds-subnet-group"
-  subnet_ids = data.aws_subnets.selected.ids
-  tags = {
-    Name = "rds-subnet-group"
-  }
-}
+# # Subnet group para RDS
+# resource "aws_db_subnet_group" "rds_subnets" {
+#   name       = "rds-subnet-group"
+#   subnet_ids = data.aws_subnets.selected.ids
+#   tags = {
+#     Name = "rds-subnet-group"
+#   }
+# }
 
-# RDS Instance
-resource "aws_db_instance" "mysql" {
-  allocated_storage    = 20
-  engine               = "mysql"
-  engine_version       = "8.0"
-  instance_class       = "db.t3.micro"
-  identifier           = "my-rds-mysql"
-  username             = var.db_username
-  password             = var.db_password
-  db_subnet_group_name = aws_db_subnet_group.rds_subnets.name
-  vpc_security_group_ids = [aws_security_group.rds_sg.id]
+# # RDS Instance
+# resource "aws_db_instance" "mysql" {
+#   allocated_storage    = 20
+#   engine               = "mysql"
+#   engine_version       = "8.0"
+#   instance_class       = "db.t3.micro"
+#   identifier           = "my-rds-mysql"
+#   username             = var.db_username
+#   password             = var.db_password
+#   db_subnet_group_name = aws_db_subnet_group.rds_subnets.name
+#   vpc_security_group_ids = [aws_security_group.rds_sg.id]
 
-  skip_final_snapshot = true # ⚠️ evita snapshot al borrar (solo pruebas)
-}
+#   skip_final_snapshot = true # ⚠️ evita snapshot al borrar (solo pruebas)
+# }

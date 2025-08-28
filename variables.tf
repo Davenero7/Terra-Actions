@@ -43,18 +43,23 @@ variable "availability_zones" {
 
 
 
-variable "vpc_id" {
-  type        = string
-  description = "ID de la VPC existente"
-}
+# variable "vpc_id" {
+#   type        = string
+#   description = "ID de la VPC existente"
+# }
 
-variable "db_username" {
-  type        = string
-  description = "Usuario de la base de datos"
-}
+# variable "db_username" {
+#   type        = string
+#   description = "Usuario de la base de datos"
+# }
 
-variable "db_password" {
-  type        = string
-  description = "Password de la base de datos"
-  sensitive   = true
-}
+# variable "db_password" {
+#   type        = string
+#   description = "Password de la base de datos"
+#   sensitive   = true
+# }
+
+# variable "subnet_ids" {
+#   type        = list(string)
+#   description = "IDs de las subnets donde desplegar el RDS"
+# }
