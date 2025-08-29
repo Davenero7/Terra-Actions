@@ -1,3 +1,2 @@
-# Aquí pones valores concretos
-ami_id        = "ami-0abcdef1234567890" # AMI válida en Ohio
-instance_type = "t3.micro"
+ami_id        = "ami-0c55b159cbfafe1f0"  # ejemplo Amazon Linux 2
+instance_type = "t2.micro"
