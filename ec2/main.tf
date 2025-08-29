@@ -1,8 +1,3 @@
-variable "vpc_id" {}
-variable "public_subnet_id" {}
-variable "ami_id" {}
-variable "instance_type" {}
-
 resource "aws_security_group" "ec2_sg" {
   name        = "ec2-sg"
   description = "Allow SSH and HTTP"
@@ -39,8 +34,4 @@ resource "aws_instance" "web" {
   tags = {
     Name = "my-web-server"
   }
-}
-
-output "ec2_public_ip" {
-  value = aws_instance.web.public_ip
 }
